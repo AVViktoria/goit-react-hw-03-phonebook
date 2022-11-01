@@ -79,8 +79,40 @@ class App extends Component {
     // this.setState({ [name]: [value] });
     this.setState({ filter: evt.currentTarget.value });
   };
-//*                              //
+
+  //*     При обновлении страницы наши контакты на месте,    //
+ //*           сохренены в локал сторадж        //
   
+componentDidMount() {
+    // console.log('App componentDidMount');
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts= JSON.parse(contacts);
+
+//*    что бы в контакты не сохранилось null   //
+  if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+   }
+  
+  
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('App componentDidUpdate');
+      const { contacts } = this.state;
+    const nextContacts = contacts;
+    // console.log(nextContacts)
+    const prevContacts = prevState.contacts;
+
+   //* Проверяем что бы не зациклить компонент  //
+    if (nextContacts !== prevContacts) {
+      console.log('Обновилось поле contacts, записываю contacts в хранилище');
+      localStorage.setItem('contacts', JSON.stringify(nextContacts));
+    }
+
+    // if (nextContacts.length > prevContacts.length && prevContacts.length !== 0) {
+    //   this.toggleModal();
+    // }
+  }
+
 
   render() {
     const { filter } = this.state;
