@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-// import { nanoid } from 'nanoid';
 
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
-  // nameInputId = nanoid();
-  // numberInputId = nanoid();
 
   //*  прописываем  внутри инпута   //
   handleChange = evt => {

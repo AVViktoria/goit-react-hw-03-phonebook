@@ -75,8 +75,6 @@ class App extends Component {
   }
     // //*  прописываем  внутри инпута   //
   handleChange = evt => {
-    // const { name, value } = evt.currentTarget;
-    // this.setState({ [name]: [value] });
     this.setState({ filter: evt.currentTarget.value });
   };
 
@@ -84,7 +82,6 @@ class App extends Component {
  //*           сохренены в локал сторадж        //
   
 componentDidMount() {
-    // console.log('App componentDidMount');
     const contacts = localStorage.getItem('contacts');
     const parsedContacts= JSON.parse(contacts);
 
@@ -96,10 +93,9 @@ componentDidMount() {
   
   
   componentDidUpdate(prevProps, prevState) {
-    // console.log('App componentDidUpdate');
       const { contacts } = this.state;
     const nextContacts = contacts;
-    // console.log(nextContacts)
+
     const prevContacts = prevState.contacts;
 
    //* Проверяем что бы не зациклить компонент  //
@@ -107,10 +103,6 @@ componentDidMount() {
       console.log('Обновилось поле contacts, записываю contacts в хранилище');
       localStorage.setItem('contacts', JSON.stringify(nextContacts));
     }
-
-    // if (nextContacts.length > prevContacts.length && prevContacts.length !== 0) {
-    //   this.toggleModal();
-    // }
   }
 
 
@@ -140,27 +132,3 @@ componentDidMount() {
 }
 
 export default App;
-// onChange={this.changeFilter} 
-//<div>
-//  <h1>Phonebook</h1>
-//  <ContactForm ... />
-//
-// <h2>Contacts</h2>
-//  <Filter ... />
-//  <ContactList ... />
-//</div>
-
-
-//   handleInputName = evt => {
-//     console.log(evt.currentTarget.name);
-//     this.setState({ name: evt.currentTarget.name });
-//   };
-// handleInputNumber = evt => {
-//     console.log(evt.currentTarget.number);
-//     this.setState({ number: evt.currentTarget.number });
-// };
-//   handleInputFilter = evt => {
-//     console.log(evt.currentTarget.filter);
-//     this.setState({ filter: evt.currentTarget.filter });
-//   };
-
